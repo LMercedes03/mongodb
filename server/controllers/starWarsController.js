@@ -2,10 +2,15 @@ const models = require('../models/starWarsModels');
 
 const starWarsController = {};
 
-starWarsController.getCharacters = (req, res, next) => {
+starWarsController.getCharacters = async (req, res, next) => {
   // write code here
-
+  
+  models.Person.find({})
+    .then((result) => res.locals = result)
+    .catch((err) => console.log(err.message));
+  
   next();
+  
 };
 
 starWarsController.getSpecies = (req, res, next) => {
